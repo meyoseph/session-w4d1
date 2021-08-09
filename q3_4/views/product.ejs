@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>Product</title>
+  </head>
+  <body>
+    <h1><%= product.getName() %></h1>
+    <p>Description: <%= product.getDescription() %></p>
+    <p>Price: <%= product.getPrice()%> $</p>
+    <form action="/product/addtocart" method="POST">
+      <input type="hidden" name="productId" value="<%= product.getId() %>" />
+      <input type="submit" value="Add to cart" />
+    </form>
+    <p><a href="/cart">Show Cart</a></p>
+  </body>
+</html>

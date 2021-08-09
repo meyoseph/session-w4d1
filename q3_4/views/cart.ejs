@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>Cart</title>
+    <style>
+      table,
+      tr,
+      td {
+        border: solid 1px black;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+      <% for(let item of cart.getAll()){ %>
+      <tr>
+        <td><%= item.getName() %></td>
+        <td><%= item.getPrice() %>$</td>
+        <td><%= item.getQuantity() %></td>
+      </tr>
+      <% } %>
+    </table>
+  </body>
+</html>
