@@ -1,11 +1,10 @@
 const express = require("express");
-const cookieParser = require("cookie-parser");
+const session = require("express-session");
 const path = require("path");
 const app = express();
 
 app.use("/result", express.urlencoded({ extended: false }));
-app.use(cookieParser());
-
+app.use(session({ secret: "wapisfun" }));
 app.get("/", (req, res) => {
   const date = new Date();
   const hour = date.getHours();
@@ -30,13 +29,13 @@ app.get("/", (req, res) => {
   res.send(response);
 });
 app.post("/result", (req, res) => {
-  res.cookie("name", req.body.name);
-  res.cookie("age", req.body.age);
+  session.username = req.body.name;
+  session.age = req.body.age;
   res.redirect("/output");
 });
 app.get("/output", (req, res) => {
-  let name = req.cookies.name;
-  let age = req.cookies.age;
+  let name = session.username;
+  let age = session.age;
   if (!name) {
     name = "person";
   }
